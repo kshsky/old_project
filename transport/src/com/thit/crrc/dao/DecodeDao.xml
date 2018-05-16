@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.thit.crrc.dao.DecodeDao">
+
+<!-- 	
+	private Integer location;  //协议中指标的字节位置（开始位置）
+	private Integer offset;   //偏移量，指标所占字节个数
+	private String gkCode; //工况编码
+	private Integer functionNO;//解析方法号
+ -->
+	<resultMap type="com.thit.crrc.bean.DecodeConfigBean" id="decodeConfig">
+		<result column="location" property="location" />
+		<result column="offset" property="offset" />
+		<result column="gk_code" property="gkCode" />
+		<result column="functionNO" property="functionNO" />
+	</resultMap>
+<!-- 使用msgType 获取相应DecodeConfigBeanList -->
+	<select id="getDecodeConfigBeanList" resultMap="decodeConfig" parameterType="java.lang.String">
+		select 
+		location,
+		offset,
+		gk_code,
+		functionNO
+		from 
+	<if test="_parameter=='0301'"> zxb_18</if>
+	<if test="_parameter=='0401'"> zlzt_18</if>
+	<if test="_parameter=='0701'"> zlgz_18</if>
+	<if test="_parameter=='0801'"> zllj_18</if>
+	<if test="_parameter=='1000'"> xt_19</if>
+	</select>
+
+</mapper>

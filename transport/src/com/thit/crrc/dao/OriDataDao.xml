@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.thit.crrc.dao.OriDataDao">
+
+	<resultMap type="com.thit.crrc.bean.OriDataBean" id="oriDataBean">
+
+		<result property="eafId" column="EAF_ID" />
+		<result property="msgId" column="msgId" />
+		<result property="storagetime" column="STORAGETIME" />
+		
+		<result property="msgFrom" column="MSGFROM" />
+		<result property="msgContent" column="msgContent" />
+		<result property="msgStatus" column="msgStatus" />
+
+	</resultMap>
+
+	<!-- ===========================add================================ -->
+
+	<insert id="saveOriDataBean" parameterType="com.thit.crrc.bean.OriDataBean">
+		insert into BOM_RT_LATEST_ORI
+
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			
+			<if test="eafId != null" >EAF_ID,</if>
+			<if test="msgId != null">msgId,</if>
+			<if test="storagetime!=null">storagetime,</if>
+			
+			<if test="msgFrom != null">msgFrom,</if>
+			<if test="msgContent != null">msgContent,</if>
+			<if test="msgStatus != null">msgStatus,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		
+			<if test="eafId != null" >#{eafId},</if>
+			<if test="msgId != null">#{msgId},</if>
+			<if test="storagetime != null">#{storagetime},</if>
+			
+			<if test="msgFrom != null">#{msgFrom},</if>
+			<if test="msgContent != null">#{msgContent},</if>
+			<if test="msgStatus != null">#{msgStatus},</if>
+		</trim>
+	</insert>
+
+	<select id="queryList" resultMap="oriDataBean">
+		 select * 
+		 from 
+		 BOM_RT_LATEST_ORI
+		<where>
+			<trim prefixOverrides="and">
+				msgstatus ='-1'  
+ 				<![CDATA[ and ROWNUM<=100 ]]>
+			</trim>
+		</where>
+		order by storagetime asc
+	</select>
+	
+	
+	<!-- 处理之后把未处理(-1) 更新为 00-正常处理; 01-处理异常 -->
+	<update id="updateMsgStatus" parameterType="com.thit.crrc.bean.OriDataBean">
+	    update BOM_RT_LATEST_ORI
+	    <trim prefix="set" suffixOverrides=",">
+			<if test="msgStatus != null">msgStatus=#{msgStatus},</if>
+		</trim>
+		<where>
+			<if test="msgId != null">msgId=#{msgId}</if>
+		</where>
+	
+	</update>
+	
+</mapper>

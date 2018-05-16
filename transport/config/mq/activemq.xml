@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:amq="http://activemq.apache.org/schema/core"
+	xmlns:jms="http://www.springframework.org/schema/jms"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd   
+        http://www.springframework.org/schema/context   
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/jms
+        http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
+        http://activemq.apache.org/schema/core
+        http://activemq.apache.org/schema/core/activemq-core-5.8.0.xsd">       
+        
+
+	<!-- activeMQ的配置 -->
+	<!-- 1.连接工厂配置 apache提供 -->
+	<bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+
+
+<!--_______________________测试环境____________________________
+	<property name="brokerURL" value="tcp://192.168.8.76:60000"></property> 
+		<property name="userName" value="thit"></property>
+		<property name="password" value="qwe!@#"></property>
+ -->
+<!--_______________________生产环境____________________________ -->
+	<property name="brokerURL" value="tcp://211.147.25.246:60000"></property> 
+		<property name="userName" value="thit"></property>
+	    <property name="password" value="qwe!@#"></property>
+
+	</bean>
+	
+	<!-- Spring Caching连接工厂 -->
+ 	<!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->  
+	<bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+		<!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->  
+  		<property name="targetConnectionFactory" ref="amqConnectionFactory"></property>
+  		<!-- 同上，同理 -->
+		<!-- <constructor-arg ref="amqConnectionFactory" /> -->
+		<!-- Session缓存数量 -->
+		<property name="sessionCacheSize" value="100" />
+	</bean>
+
+	<!-- 定义Queue监听器 -->
+	<jms:listener-container destination-type="queue" container-type="default" connection-factory="connectionFactory" acknowledge="auto">
+		<jms:listener destination="thit.mq.queue" ref="receiver"/>
+	</jms:listener-container>
+	
+	<bean id="receiver" class="com.thit.crrc.listener.MqListener"></bean>
+	
+	
+</beans>

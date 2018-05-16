@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.thit.crrc.dao.ExtDao">
+
+	<resultMap type="com.thit.crrc.bean.ExtBean" id="extBean">
+		<result property="jcid" column="JCID" />
+		<result property="collectiontime" column="COLLECTIONTIME" />
+		<result property="storagetime" column="STORAGETIME" />
+		<result property="msgFrom" column="MSGFROM" />
+
+	</resultMap>
+
+	<!-- ===========================add================================ -->
+
+	<insert id="saveExtBean" parameterType="com.thit.crrc.bean.ExtBean">
+		insert into
+
+		<if test="tableName=='BOM_RT_ZLZT_TMP'">BOM_RT_ZLZT_TMP</if>
+
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		
+		   <if test="eafId != null" >EAF_ID,</if>
+		   
+			<if test="jcid != null"> jcid,</if>
+			<if test="collectiontime!=null">collectiontime,</if>
+			<if test="storagetime!=null">storagetime,</if>
+			<if test="msgFrom != null">msgFrom,</if>
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		
+		    <if test="eafId != null" >#{eafId},</if> 
+		
+			<if test="jcid != null">#{jcid},</if>
+			<if test="collectiontime != null">#{collectiontime},</if>
+			<if test="storagetime != null">#{storagetime},</if>
+			<if test="msgFrom != null">#{msgFrom},</if>
+
+		</trim>
+	</insert>
+
+	<!-- ===========================update========================================= -->
+	<update id="updateExtBean" parameterType="com.thit.crrc.bean.ExtBean">
+		update
+		<if test="tableName='BOM_RT_ZLZT_TMP'">BOM_RT_ZLZT_TMP</if>
+
+		<trim prefix="set" suffixOverrides=",">
+			<if test="collectiontime != null">collectiontime=#{collectiontime},</if>
+			<if test="storagetime != null">storagetime=#{storagetime},</if>
+		</trim>
+
+		<where>
+			<if test="jcid != null">jcid=#{jcid}</if>
+			<if test="msgFrom != null">and msgFrom=#{msgFrom}</if>
+		</where>
+	</update>
+
+	<!-- ==========================query============================== -->
+	<select id="queryExtBean" resultMap="extBean" parameterType="com.thit.crrc.bean.ExtBean">
+		select
+		jcid,
+		collectiontime,
+		storagetime,
+		msgFrom
+		from
+		<if test="tableName='BOM_RT_ZLZT_TMP'">BOM_RT_ZLZT_TMP</if>
+		<where>
+			<if test="jcid != null">jcid=#{jcid}</if>
+			<if test="msgFrom != null">and msgFrom=#{msgFrom}</if>
+		</where>
+
+	</select>
+	<!-- ============================================================================== -->
+	<insert id="saveOriDataBean" parameterType="com.thit.crrc.bean.OriDataBean">
+		insert into
+
+		<if test="tableName=='BOM_RT_LATEST_FILE_ORI'">BOM_RT_LATEST_FILE_ORI</if>
+
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+
+			<if test="storagetime!=null">storagetime,</if>
+			<if test="msgFrom != null">msgFrom,</if>
+			<if test="msgType != null">msgType,</if>
+			<if test="msgContent != null">content,</if>
+			<if test="msgStatus != null">msgStatus,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+
+			<if test="storagetime != null">#{storagetime},</if>
+			<if test="msgFrom != null">#{msgFrom},</if>
+			<if test="msgType != null">#{msgType},</if>
+			<if test="msgContent != null">#{msgContent},</if>
+			<if test="msgStatus != null">#{msgStatus},</if>
+
+		</trim>
+
+	</insert>
+</mapper>

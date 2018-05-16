@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration>
+
+	<header>
+		<!-- Meta data about the resulting combined configuration -->
+	</header>
+
+	<override>
+		<!-- _________________________________________________
+			 使用config.xml 管理properties下所有的 properties文件 
+			 该config.xml 文件由 ConfigUtils.java 负责读取
+			 __________________________________________________
+		-->
+		<!-- Configuration declarations with override semantics -->
+	
+		<properties fileName="jdbc.properties" />
+		<properties fileName="path.properties" />
+		<properties fileName="mqtt.properties" />
+		
+	</override>
+
+	<additional>
+		<!-- Configuration declarations that form a union configuration -->
+	</additional>
+
+</configuration>

@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.thit.crrc.dao.StorageDao">
+
+<resultMap type="com.thit.crrc.bean.StorageConfigBean" id="storageBeanConfig">
+	<result property="gkCode" column="BOM_PARAMNAME"/>
+	<result property="columnName" column="BOM_RTTABLEHEAD"/>
+</resultMap>
+
+<!-- ========================================================= -->
+<!--ZLZT  5F939D3AB4362FD9CD32E228A4AE33F2 -->
+<!--ZLGZ  E2AD2EF7160CCEB33CA1AF9B45977DDF -->
+<!--ZLLJ  E7F8E54D2CA937B2A329E91AEF59C192 -->
+<!--ZXB   C488F1B4BD402A4398B5A2223BF5EB4C -->
+<!--XT   3CF8C81A27DA56107885BCEE2DD056CC -->
+
+<!-- ===========================获取入库配置================================ -->
+<select id="getStorageConfigBeanList" resultMap="storageBeanConfig" parameterType="String" >
+	select
+	BOM_PARAMNAME,
+	BOM_RTTABLEHEAD
+	from
+	BOM_WORKING_PARAMS_M
+	where
+	BOM_COLLECTTYPE	=
+	<if test="_parameter=='0301'"> 'C488F1B4BD402A4398B5A2223BF5EB4C'</if>
+	<if test="_parameter=='0401'"> '5F939D3AB4362FD9CD32E228A4AE33F2'</if>
+	<if test="_parameter=='0701'"> 'E2AD2EF7160CCEB33CA1AF9B45977DDF'</if>
+	<if test="_parameter=='0801'"> 'E7F8E54D2CA937B2A329E91AEF59C192'</if>
+	<if test="_parameter=='1000'"> '3CF8C81A27DA56107885BCEE2DD056CC'</if>
+	
+	<!-- 
+	8C53A030C162C4AD16F3A78AB9C1D056  hwjcweb
+	3CF8C81A27DA56107885BCEE2DD056CC  154 
+	8A72FF4F98D21DF1EBBC8FF1AF596A69  76
+	
+	<if test="_parameter=='1000'"> '8A72FF4F98D21DF1EBBC8FF1AF596A69'</if> -->
+	<!-- <if test="_parameter=='1000'"> '3CF8C81A27DA56107885BCEE2DD056CC'</if> 
+	
+	
+	3CF8C81A27DA56107885BCEE2DD056CC-->
+</select>
+<!-- ===========================入库========================================= -->
+<!-- new  -->
+<insert id="store" parameterType="com.thit.crrc.bean.StorageBean" >
+    insert into 
+    <if test="msgType=='0301'"> BOM_RT_LATEST_ZXBUXX</if>
+    <if test="msgType=='0401'"> BOM_RT_LATEST_CLSJXX</if>
+    <if test="msgType=='0701'"> BOM_RT_LATEST_CLGZXX</if>
+    <if test="msgType=='0801'"> BOM_RT_LATEST_CLLJXX</if>
+    <if test="msgType=='1000'"> BOM_RT_LATEST_XTXX</if>
+     <trim prefix="(" suffix=")" suffixOverrides="," >
+     
+        <if test="eafId != null" > EAF_ID,</if>
+        <if test="jcid != null" > jcid,</if>
+        <if test="storagetime != null" >storagetime,</if>
+        <if test="collectiontime!=null">collectiontime,</if>
+        <if test="msgFrom!=null">msgFrom,</if>
+        
+        <if test="column001 != null" >column001,</if>
+        <if test="column002 != null" >column002,</if>
+        <if test="column003 != null" >column003,</if>
+        <if test="column004 != null" >column004,</if>
+        <if test="column005 != null" >column005,</if>
+        <if test="column006 != null" >column006,</if>
+        <if test="column007 != null" >column007,</if>
+        <if test="column008 != null" >column008,</if>
+        <if test="column009 != null" >column009,</if>
+        <if test="column010 != null" >column010,</if>
+                                      
+        <if test="column011 != null" >column011,</if>
+        <if test="column012 != null" >column012,</if>
+        <if test="column013 != null" >column013,</if>
+        <if test="column014 != null" >column014,</if>
+        <if test="column015 != null" >column015,</if>
+        <if test="column016 != null" >column016,</if>
+        <if test="column017 != null" >column017,</if>
+        <if test="column018 != null" >column018,</if>
+        <if test="column019 != null" >column019,</if>
+        <if test="column020 != null" >column020,</if>
+                                   
+        <if test="column021 != null" >column021,</if>
+        <if test="column022 != null" >column022,</if>
+        <if test="column023 != null" >column023,</if>
+        <if test="column024 != null" >column024,</if>
+        <if test="column025 != null" >column025,</if>
+        <if test="column026 != null" >column026,</if>
+        <if test="column027 != null" >column027,</if>
+        <if test="column028 != null" >column028,</if>
+        <if test="column029 != null" >column029,</if>
+        <if test="column030 != null" >column030,</if>
+                                             
+        <if test="column031 != null" >column031,</if>
+        <if test="column032 != null" >column032,</if>
+        <if test="column033 != null" >column033,</if>
+        <if test="column034 != null" >column034,</if>
+        <if test="column035 != null" >column035,</if>
+        <if test="column036 != null" >column036,</if>
+        <if test="column037 != null" >column037,</if>
+        <if test="column038 != null" >column038,</if>
+        <if test="column039 != null" >column039,</if>
+        <if test="column040 != null" >column040,</if>
+                                               
+        <if test="column041 != null" >column041,</if>
+        <if test="column042 != null" >column042,</if>
+        <if test="column043 != null" >column043,</if>
+        <if test="column044 != null" >column044,</if>
+        <if test="column045 != null" >column045,</if>
+        <if test="column046 != null" >column046,</if>
+        <if test="column047 != null" >column047,</if>
+        <if test="column048 != null" >column048,</if>
+        <if test="column049 != null" >column049,</if>
+        <if test="column050 != null" >column050,</if>
+                                                
+        <if test="column051 != null" >column051,</if>
+        <if test="column052 != null" >column052,</if>
+        <if test="column053 != null" >column053,</if>
+        <if test="column054 != null" >column054,</if>
+        <if test="column055 != null" >column055,</if>
+        <if test="column056 != null" >column056,</if>
+        <if test="column057 != null" >column057,</if>
+        <if test="column058 != null" >column058,</if>
+        <if test="column059 != null" >column059,</if>
+		<if test="column060 != null" >column060,</if>
+		                                     
+		<if test="column061 != null" >column061,</if>
+        <if test="column062 != null" >column062,</if>
+        <if test="column063 != null" >column063,</if>
+        <if test="column064 != null" >column064,</if>
+        <if test="column065 != null" >column065,</if>
+        <if test="column066 != null" >column066,</if>
+        <if test="column067 != null" >column067,</if>
+        <if test="column068 != null" >column068,</if>
+        <if test="column069 != null" >column069,</if>
+		<if test="column070 != null" >column070,</if>
+	                                          
+		<if test="column071 != null" >column071,</if>
+		<if test="column072 != null" >column072,</if>
+		<if test="column073 != null" >column073,</if>
+		<if test="column074 != null" >column074,</if>
+		<if test="column075 != null" >column075,</if>
+		<if test="column076 != null" >column076,</if>
+		<if test="column077 != null" >column077,</if>
+		<if test="column078 != null" >column078,</if>
+		<if test="column079 != null" >column079,</if>
+		<if test="column080 != null" >column080,</if>
+	                                            
+		<if test="column081 != null" >column081,</if>
+		<if test="column082 != null" >column082,</if>
+		<if test="column083 != null" >column083,</if>
+		<if test="column084 != null" >column084,</if>
+		<if test="column085 != null" >column085,</if>
+		<if test="column086 != null" >column086,</if>
+		<if test="column087 != null" >column087,</if>
+		<if test="column088 != null" >column088,</if>
+		<if test="column089 != null" >column089,</if>
+		<if test="column090 != null" >column090,</if>
+	                                          
+		<if test="column091 != null" >column091,</if>
+		<if test="column092 != null" >column092,</if>
+		<if test="column093 != null" >column093,</if>
+		<if test="column094 != null" >column094,</if>
+		<if test="column095 != null" >column095,</if>
+		<if test="column096 != null" >column096,</if>
+		<if test="column097 != null" >column097,</if>
+		<if test="column098 != null" >column098,</if>
+		<if test="column099 != null" >column099,</if>
+		<if test="column100 != null" >column100,</if>
+	                                      
+		<if test="column101 != null" >column101,</if>
+		<if test="column102 != null" >column102,</if>
+		<if test="column103 != null" >column103,</if>
+		<if test="column104 != null" >column104,</if>
+		<if test="column105 != null" >column105,</if>
+		<if test="column106 != null" >column106,</if>
+		<if test="column107 != null" >column107,</if>
+		<if test="column108 != null" >column108,</if>
+		<if test="column109 != null" >column109,</if>
+		<if test="column110 != null" >column110,</if>
+                                     
+		<if test="column111 != null" >column111,</if>
+		<if test="column112 != null" >column112,</if>
+		<if test="column113 != null" >column113,</if>
+		<if test="column114 != null" >column114,</if>
+		<if test="column115 != null" >column115,</if>
+		<if test="column116 != null" >column116,</if>
+		<if test="column117 != null" >column117,</if>
+		<if test="column118 != null" >column118,</if>
+		<if test="column119 != null" >column119,</if>
+		<if test="column120 != null" >column120,</if>
+		                                     
+		<if test="column121 != null" >column121,</if>
+		<if test="column122 != null" >column122,</if>
+		<if test="column123 != null" >column123,</if>
+		<if test="column124 != null" >column124,</if>
+		<if test="column125 != null" >column125,</if>
+		<if test="column126 != null" >column126,</if>
+		<if test="column127 != null" >column127,</if>
+		<if test="column128 != null" >column128,</if>
+		<if test="column129 != null" >column129, </if>
+		<if test="column130 != null" >column130,</if>
+		                                 
+		<if test="column131 != null" >column131,</if>
+		<if test="column132 != null" >column132,</if>
+		<if test="column133 != null" >column133,</if>
+		<if test="column134 != null" >column134,</if>
+		<if test="column135 != null" >column135,</if>
+		<if test="column136 != null" >column136,</if>
+		<if test="column137 != null" >column137,</if>
+		<if test="column138 != null" >column138,</if>
+		<if test="column139 != null" >column139,</if>
+		<if test="column140 != null" >column140,</if>
+		                                 
+		<if test="column141 != null" >column141,</if>
+		<if test="column142 != null" >column142,</if>
+		<if test="column143 != null" >column143,</if>
+		<if test="column144 != null" >column144,</if>
+		<if test="column145 != null" >column145,</if>
+		<if test="column146 != null" >column146,</if>
+		<if test="column147 != null" >column147,</if>
+		<if test="column148 != null" >column148,</if>
+		<if test="column149 != null" >column149,</if>
+		<if test="column150 != null" >column150,</if>
+	                                     
+		<if test="column151 != null" >column151,</if>
+		<if test="column152 != null" >column152,</if>
+		<if test="column153 != null" >column153,</if>
+		<if test="column154 != null" >column154,</if>
+		<if test="column155 != null" >column155,</if>
+		<if test="column156 != null" >column156,</if>
+		<if test="column157 != null" >column157,</if>
+		<if test="column158 != null" >column158,</if>
+		<if test="column159 != null" >column159,</if>
+		<if test="column160 != null" >column160,</if>
+	                                       
+		<if test="column161 != null" >column161,</if>
+		<if test="column162 != null" >column162,</if>
+		<if test="column163 != null" >column163,</if>
+		<if test="column164 != null" >column164,</if>
+		<if test="column165 != null" >column165,</if>
+		<if test="column166 != null" >column166,</if>
+		<if test="column167 != null" >column167,</if>
+		<if test="column168 != null" >column168,</if>
+		<if test="column169 != null" >column169,</if>
+		<if test="column170 != null" >column170,</if>
+		                                      
+		<if test="column171 != null" >column171,</if>
+		<if test="column172 != null" >column172,</if>
+		<if test="column173 != null" >column173,</if>
+		<if test="column174 != null" >column174,</if>
+		<if test="column175 != null" >column175,</if>
+		<if test="column176 != null" >column176,</if>
+		<if test="column177 != null" >column177,</if>
+		<if test="column178 != null" >column178,</if>
+		<if test="column179 != null" >column179,</if>
+		<if test="column180 != null" >column180,</if>
+	                                          
+		<if test="column181 != null" >column181,</if>
+		<if test="column182 != null" >column182,</if>
+		<if test="column183 != null" >column183,</if>
+		<if test="column184 != null" >column184,</if>
+		<if test="column185 != null" >column185,</if>
+		<if test="column186 != null" >column186,</if>
+		<if test="column187 != null" >column187,</if>
+		<if test="column188 != null" >column188,</if>
+		<if test="column189 != null" >column189,</if>
+		<if test="column190 != null" >column190,</if>
+		                                 
+		<if test="column191 != null" >column191,</if>
+		<if test="column192 != null" >column192,</if>
+		<if test="column193 != null" >column193,</if>
+		<if test="column194 != null" >column194,</if>
+		<if test="column195 != null" >column195,</if>
+		<if test="column196 != null" >column196,</if>
+		<if test="column197 != null" >column197,</if>
+		<if test="column198 != null" >column198,</if>
+		<if test="column199 != null" >column199,</if>
+		<if test="column200 != null" >column200,</if>
+		
+      </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+       <if test="eafId != null" > #{eafId},</if>
+       <if test="jcid != null" >#{jcid},</if>
+       <if test="storagetime != null" >#{storagetime},</if>
+       <if test="collectiontime != null" >#{collectiontime},</if>
+       <if test="msgFrom != null" >#{msgFrom},</if>
+       
+      <if test="column001 != null" >#{column001},</if>
+      <if test="column002 != null" >#{column002},</if>
+      <if test="column003 != null" >#{column003},</if>
+      <if test="column004 != null" >#{column004},</if>
+      <if test="column005 != null" >#{column005},</if>
+      <if test="column006 != null" >#{column006},</if>
+      <if test="column007 != null" >#{column007},</if>
+      <if test="column008 != null" >#{column008},</if>
+      <if test="column009 != null" >#{column009},</if>
+      <if test="column010 != null" >#{column010},</if>
+ 
+      <if test="column011 != null" >#{column011},</if>
+      <if test="column012 != null" >#{column012},</if>
+      <if test="column013 != null" >#{column013},</if>
+      <if test="column014 != null" >#{column014},</if>
+      <if test="column015 != null" >#{column015},</if>
+      <if test="column016 != null" >#{column016},</if>
+      <if test="column017 != null" >#{column017},</if>
+      <if test="column018 != null" >#{column018},</if>
+      <if test="column019 != null" >#{column019},</if>
+      <if test="column020 != null" >#{column020},</if>
+    
+      <if test="column021 != null" >#{column021},</if>
+      <if test="column022 != null" >#{column022},</if>
+      <if test="column023 != null" >#{column023},</if>
+      <if test="column024 != null" >#{column024},</if>
+      <if test="column025 != null" >#{column025},</if>
+      <if test="column026 != null" >#{column026},</if>
+      <if test="column027 != null" >#{column027},</if>
+      <if test="column028 != null" >#{column028},</if>
+      <if test="column029 != null" >#{column029},</if>
+      <if test="column030 != null" >#{column030},</if>
+ 
+      <if test="column031 != null" >#{column031},</if>
+      <if test="column032 != null" >#{column032},</if>
+      <if test="column033 != null" >#{column033},</if>
+      <if test="column034 != null" >#{column034},</if>
+      <if test="column035 != null" >#{column035},</if>
+      <if test="column036 != null" >#{column036},</if>
+      <if test="column037 != null" >#{column037},</if>
+      <if test="column038 != null" >#{column038},</if>
+      <if test="column039 != null" >#{column039},</if>
+      <if test="column040 != null" >#{column040},</if>
+  
+      <if test="column041 != null" >#{column041},</if>
+      <if test="column042 != null" >#{column042},</if>
+      <if test="column043 != null" >#{column043},</if>
+      <if test="column044 != null" >#{column044},</if>
+      <if test="column045 != null" >#{column045},</if>
+      <if test="column046 != null" >#{column046},</if>
+      <if test="column047 != null" >#{column047},</if>
+      <if test="column048 != null" >#{column048},</if>
+      <if test="column049 != null" >#{column049},</if>
+      <if test="column050 != null" >#{column050},</if>
+ 
+      <if test="column051 != null" >#{column051},</if>
+      <if test="column052 != null" >#{column052},</if>
+      <if test="column053 != null" >#{column053},</if>
+      <if test="column054 != null" >#{column054},</if>
+      <if test="column055 != null" >#{column055},</if>
+      <if test="column056 != null" >#{column056},</if>
+      <if test="column057 != null" >#{column057},</if>
+      <if test="column058 != null" >#{column058},</if>
+      <if test="column059 != null" >#{column059},</if>
+      <if test="column060 != null" >#{column060},</if>
+ 
+	  <if test="column061 != null" >#{column061},</if>
+      <if test="column062 != null" >#{column062},</if>
+      <if test="column063 != null" >#{column063},</if>
+      <if test="column064 != null" >#{column064},</if>
+      <if test="column065 != null" >#{column065},</if>
+      <if test="column066 != null" >#{column066},</if>
+      <if test="column067 != null" >#{column067},</if>
+      <if test="column068 != null" >#{column068},</if>
+      <if test="column069 != null" >#{column069},</if>
+	  <if test="column070 != null" >#{column070},</if>
+          
+	  <if test="column071 != null" >#{column071},</if>
+	  <if test="column072 != null" >#{column072},</if>
+	  <if test="column073 != null" >#{column073},</if>
+	  <if test="column074 != null" >#{column074},</if>
+	  <if test="column075 != null" >#{column075},</if>
+	  <if test="column076 != null" >#{column076},</if>
+	  <if test="column077 != null" >#{column077},</if>
+	  <if test="column078 != null" >#{column078},</if>
+	  <if test="column079 != null" >#{column079},</if>
+	  <if test="column080 != null" >#{column080},</if>
+                                                 
+	  <if test="column081 != null" >#{column081},</if>
+	  <if test="column082 != null" >#{column082},</if>
+	  <if test="column083 != null" >#{column083},</if>
+	  <if test="column084 != null" >#{column084},</if>
+	  <if test="column085 != null" >#{column085},</if>
+	  <if test="column086 != null" >#{column086},</if>
+	  <if test="column087 != null" >#{column087},</if>
+	  <if test="column088 != null" >#{column088},</if>
+	  <if test="column089 != null" >#{column089},</if>
+	  <if test="column090 != null" >#{column090},</if>
+                                                  
+	  <if test="column091 != null" >#{column091},</if>
+	  <if test="column092 != null" >#{column092},</if>
+	  <if test="column093 != null" >#{column093},</if>
+	  <if test="column094 != null" >#{column094},</if>
+	  <if test="column095 != null" >#{column095},</if>
+	  <if test="column096 != null" >#{column096},</if>
+	  <if test="column097 != null" >#{column097},</if>
+	  <if test="column098 != null" >#{column098},</if>
+	  <if test="column099 != null" >#{column099},</if>
+	  <if test="column100 != null" >#{column100},</if>
+                                                 
+	  <if test="column101 != null" >#{column101},</if>
+	  <if test="column102 != null" >#{column102},</if>
+	  <if test="column103 != null" >#{column103},</if>
+	  <if test="column104 != null" >#{column104},</if>
+	  <if test="column105 != null" >#{column105},</if>
+	  <if test="column106 != null" >#{column106},</if>
+	  <if test="column107 != null" >#{column107},</if>
+	  <if test="column108 != null" >#{column108},</if>
+	  <if test="column109 != null" >#{column109},</if>
+	  <if test="column110 != null" >#{column110},</if>
+                                                 
+	  <if test="column111 != null" >#{column111},</if>
+	  <if test="column112 != null" >#{column112},</if>
+	  <if test="column113 != null" >#{column113},</if>
+	  <if test="column114 != null" >#{column114},</if>
+	  <if test="column115 != null" >#{column115},</if>
+	  <if test="column116 != null" >#{column116},</if>
+	  <if test="column117 != null" >#{column117},</if>
+	  <if test="column118 != null" >#{column118},</if>
+	  <if test="column119 != null" >#{column119},</if>
+	  <if test="column120 != null" >#{column120},</if>
+	                                             
+	  <if test="column121 != null" >#{column121},</if>
+	  <if test="column122 != null" >#{column122},</if>
+	  <if test="column123 != null" >#{column123},</if>
+	  <if test="column124 != null" >#{column124},</if>
+	  <if test="column125 != null" >#{column125},</if>
+	  <if test="column126 != null" >#{column126},</if>
+	  <if test="column127 != null" >#{column127},</if>
+	  <if test="column128 != null" >#{column128},</if>
+	  <if test="column129 != null" >#{column129},</if>
+	  <if test="column130 != null" >#{column130},</if>
+	                                              
+	  <if test="column131 != null" >#{column131},</if>
+	  <if test="column132 != null" >#{column132},</if>
+	  <if test="column133 != null" >#{column133},</if>
+	  <if test="column134 != null" >#{column134},</if>
+	  <if test="column135 != null" >#{column135},</if>
+	  <if test="column136 != null" >#{column136},</if>
+	  <if test="column137 != null" >#{column137},</if>
+	  <if test="column138 != null" >#{column138},</if>
+	  <if test="column139 != null" >#{column139},</if>
+	  <if test="column140 != null" >#{column140},</if>
+	                                              
+	  <if test="column141 != null" >#{column141},</if>
+	  <if test="column142 != null" >#{column142},</if>
+	  <if test="column143 != null" >#{column143},</if>
+	  <if test="column144 != null" >#{column144},</if>
+	  <if test="column145 != null" >#{column145},</if>
+	  <if test="column146 != null" >#{column146},</if>
+	  <if test="column147 != null" >#{column147},</if>
+	  <if test="column148 != null" >#{column148},</if>
+	  <if test="column149 != null" >#{column149},</if>
+	  <if test="column150 != null" >#{column150},</if>
+                                                  
+	  <if test="column151 != null" >#{column151},</if>
+	  <if test="column152 != null" >#{column152},</if>
+	  <if test="column153 != null" >#{column153},</if>
+	  <if test="column154 != null" >#{column154},</if>
+	  <if test="column155 != null" >#{column155},</if>
+	  <if test="column156 != null" >#{column156},</if>
+	  <if test="column157 != null" >#{column157},</if>
+	  <if test="column158 != null" >#{column158},</if>
+	  <if test="column159 != null" >#{column159},</if>
+	  <if test="column160 != null" >#{column160},</if>
+	                                             
+	  <if test="column161 != null" >#{column161},</if>
+	  <if test="column162 != null" >#{column162},</if>
+	  <if test="column163 != null" >#{column163},</if>
+	  <if test="column164 != null" >#{column164},</if>
+	  <if test="column165 != null" >#{column165},</if>
+	  <if test="column166 != null" >#{column166},</if>
+	  <if test="column167 != null" >#{column167},</if>
+	  <if test="column168 != null" >#{column168},</if>
+	  <if test="column169 != null" >#{column169},</if>
+	  <if test="column170 != null" >#{column170},</if>
+	                                             
+	  <if test="column171 != null" >#{column171},</if>
+	  <if test="column172 != null" >#{column172},</if>
+	  <if test="column173 != null" >#{column173},</if>
+	  <if test="column174 != null" >#{column174},</if>
+	  <if test="column175 != null" >#{column175},</if>
+	  <if test="column176 != null" >#{column176},</if>
+	  <if test="column177 != null" >#{column177},</if>
+	  <if test="column178 != null" >#{column178},</if>
+	  <if test="column179 != null" >#{column179},</if>
+	  <if test="column180 != null" >#{column180},</if>
+	                                              
+	  <if test="column181 != null" >#{column181},</if>
+	  <if test="column182 != null" >#{column182},</if>
+	  <if test="column183 != null" >#{column183},</if>
+	  <if test="column184 != null" >#{column184},</if>
+	  <if test="column185 != null" >#{column185},</if>
+	  <if test="column186 != null" >#{column186},</if>
+	  <if test="column187 != null" >#{column187},</if>
+	  <if test="column188 != null" >#{column188},</if>
+	  <if test="column189 != null" >#{column189},</if>
+	  <if test="column190 != null" >#{column190},</if>
+	                                           
+	  <if test="column191 != null" >#{column191},</if>
+	  <if test="column192 != null" >#{column192},</if>
+	  <if test="column193 != null" >#{column193},</if>
+	  <if test="column194 != null" >#{column194},</if>
+	  <if test="column195 != null" >#{column195},</if>
+	  <if test="column196 != null" >#{column196},</if>
+	  <if test="column197 != null" >#{column197},</if>
+	  <if test="column198 != null" >#{column198},</if>
+	  <if test="column199 != null" >#{column199},</if>
+	  <if test="column200 != null" >#{column200},</if>
+	</trim>
+  </insert> 
+  <!-- ======================================================== -->
+
+</mapper>
